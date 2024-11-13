@@ -1,0 +1,25 @@
+server:
+  port: 8050
+
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    # Updated to connect to remote server or localhost - be consistent with your target
+    url: jdbc:postgresql://66.42.43.15:5432/product # Change this URL to localhost if needed: jdbc:postgresql://localhost:5432/product
+    username: postgres
+    password: Abc@12345 # Ensure this is the correct password
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+  flyway:
+    baseline-on-migrate: true
+    enabled: true
+    baseline-description: "init"
+    baseline-version: 0
+    # Flyway inherits the username and password from the datasource properties.
+    user: ${spring.datasource.username}
+    password: ${spring.datasource.password}
